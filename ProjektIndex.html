@@ -1,0 +1,150 @@
+<html>
+<meta charset = "utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+<link rel="stylesheet" href="ProjektCSS.css" type="text/css">
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+<p id="Caption">AccessPoint Manager <br>
+<!--<select value="Menu">
+	<option ng-model="Liste" ng-Click="ListeStart()" value="Liste">Liste</option>
+	<option  ng-model="Liste" ng-Click="StatistikStart()" value="Statistik">Statistik</option>
+</select>--> 
+<input type="button" value="Liste" ng-model="Liste" ng-Click="ListeStart()" id="ListeButton"> 
+<input type="button" value="Statistik" ng-model="Liste" ng-Click="StatistikStart()" id="StatistikButton"> </p>
+<p ng-if="Liste">Geräte</p>
+<table ng-if="Liste">
+			<tr>
+				<th>Gerätename</th>
+				<th>Online</th>
+				<th>Zeit</th>
+			<tr ng-repeat="x in OnlineDevices | orderBy: 'DeviceName'">
+				<td>{{ x.DeviceName }}</td>
+				<td><img src="http://www.clipartbest.com/cliparts/MTL/May/MTLMaydTa.png" id="Check" style="width:20px;height:20px;">
+				<td>{{x.Uptime}}</td>
+				<tr ng-repeat="x in OfflineDevices | orderBy: 'HostName'">
+				<td>{{ x.HostName }}</td>
+				<td><img src="https://thetomatos.com/wp-content/uploads/2016/05/checkbox-clipart-4.png" id="Cross" style="width:18px;height:18px;">
+				<td>{{x.TimeOffline}}</td>	
+			</tr>
+<p ng-if="!Liste">Statistik</p>
+</table>
+{{Hostname}}
+
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+	$scope.Liste = true;
+  $http.get("http://bahama.dff-solutions.local:666/api/AdoptedDevices")
+  .then(function(response) {
+      $scope.OnlineDevices = response.data.AdoptedDevicesList;
+  });
+  $http.get("http://bahama.dff-solutions.local:666/api/AdoptedOfflineDevices")
+  .then(function(response) {
+      $scope.OfflineDevices = response.data.AdoptedDevicesList;
+  });
+  $scope.ListeStart = function () {
+	$scope.Liste = true;
+	}
+  $scope.StatistikStart = function () {
+	$scope.Liste = false;
+	}
+});
+	
+</script>
+<!--
+<div id"ShowVersion">
+<h2>Details/Menu unten links als Versions Nummer</h2>
+<p>/api/ShowVersion</p> 
+  "Version": "5.8.4.0-034R", <br>
+  "Uptime": "6 days, 22 hours 30 minutes", <br>
+  "Cpu": "RMI XLR V0.4", <br>
+  "MacAdress": "00-15-70-D8-F5-30", <br>
+  "SerialNumber": "9103520400048", <br>
+  "FirmwareVersion": "502 build 4", <br>
+  "FpgaVersion": "1.38", <br>
+  "TimeStamp": "2016-10-17T12:34:32.559Z", <br>
+  "RuntimeMilliseconds": 2018 <br>
+  
+ </div>
+ <div>
+<h2>Statistik bzw. Shortdetails Liste </h2>
+<p>/api/AdoptedDevices</p> 
+  "AdoptedDevicesList": [<br> <br>
+    "DeviceName": "ap650-98C260", <br>
+      "CfgStat": "configured", <br>      
+"Version": "5.8.4.0-034R", <br>
+ "Msgs": "No",       <br>
+"AdoptedBy": "rfs6000-D8F530", <br>
+ "LastAdoption": "6 days 02:53:34", <br>
+ "Uptime": "6 days 02:55:45"    , <br>    
+ <br>
+    "DeviceName": "AP-13812", <br>
+      "CfgStat": "configured",     <br>  
+"Version": "5.8.4.0-034R", <br>
+      "Msgs": "No",       <br>
+"AdoptedBy": "rfs6000-D8F530",  <br>     
+"LastAdoption": "6 days 02:53:11", <br>
+      "Uptime": "6 days 02:55:39",   <br>  <br>
+ "TimeStamp": "2016-10-17T12:35:05.091Z",<br> 
+  "RuntimeMilliseconds": 1527} <br>
+  </div>
+ <div>
+<h2>Statistik bzw. Shortdetails Liste </h2>
+<p>/api/AdoptedOfflineDevices</p> 
+{  "AdoptedDevicesList": [    { <br>    
+  "Mac": "5C-0E-8B-98-C2-90", <br>
+      "HostName": "ap650-98C290",<br> 
+      "Type": "ap650", <br>
+      "RfDomain": "default",   <br>    
+      "TimeOffline": "4:05:33", <br>
+      "ConnectedTo": "rfs6000-D8F530:ge5"<br>    }  ], <br>
+  "TimeStamp": "2016-10-17T12:35:07.591Z", <br>
+ "RuntimeMilliseconds": 1502} <br>
+ </div>
+ <div>
+<h2>Details und State fürs Tortendiagramm </h2>
+<p>/api/Radios</p> 
+ "RadioList": <br>
+    "Radioname": "ap650-98C260:R1", <br>
+      "RadioMac": "5C-0E-8B-9C-B7-40", <br>
+      "RfMode": "2.4GHz-wlan", <br>
+      "State": "On", <br>
+      "Channel": "1", <br>
+      "Power": "15", <br>
+      "Clients": "0" <br>
+    , <br>
+     <br>
+      "Radioname": "ap650-98C260:R2", <br>
+      "RadioMac": "5C-0E-8B-9C-BB-00", <br>
+      "RfMode": "5GHz-wlan", <br>
+      "State": "On", <br>
+      "Channel": "44w", <br>
+      "Power": "16", <br>
+      "Clients": "1" <br>
+    , <br>
+     <br>
+      "Radioname": "AP-13812:R1", <br>
+      "RadioMac": "B4-C7-99-AC-08-70", <br>
+      "RfMode": "2.4GHz-wlan", <br>
+      "State": "On", <br>
+      "Channel": "6", <br>
+      "Power": "15", <br>
+	  <br>
+      
+ "Radioname": "AP-13812:R2",  <br>     
+"RadioMac": "B4-C7-99-AC-03-C0", <br>
+"RfMode": "5GHz-wlan", <br>
+"State": "On",       <br>
+"Channel": "36w",       <br>
+"Power": "16",       <br>
+"Clients": "0", <br><br>
+"TimeStamp": "2016-10-17T12:35:42.576Z",   <br>
+"RuntimeMilliseconds": 1512<br>
+</div>
+-->
+</body>
+</html>

@@ -1,0 +1,44 @@
+html {
+	width: 600px;
+}
+body {
+	width: 600px;
+	margin: 0px;
+	background-color: #FFF;
+}
+
+div {
+	text-align: left;
+	width: 600px;
+    padding: 25px;
+    margin: 25px;
+	font-size: 30px;
+	
+}
+#Caption {
+	text-align: left;
+	font-size: 40px;
+	padding: 20px;
+	background-color: #3366ff;
+	font-family: Verdana;
+	width: 500px;
+}
+
+h2 {
+	
+	color: Blue;
+}
+
+p {
+	text-align: center;
+}
+
+#Check, #Cross {
+	float: right;
+}
+#ListeButton , #StatistikButton {
+	float: right;
+}
+table {
+	font-size: 20px;
+}

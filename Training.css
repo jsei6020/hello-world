@@ -1,0 +1,33 @@
+body {
+    background-image: url(http://v3wall.com/wallpaper/1920_1080/1211/1920_1080_20121112125805833072.jpg);
+}
+
+#Title {
+	color: Red;
+	background-color:blue
+}
+h1.Carsection {
+	color: #99cc00;
+}
+
+p.Carsection {
+	color: #ff0066;
+	
+}
+
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: seperate;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #0066ff;
+}
+table tr:nth-child(even) {
+  background-color: #001f4d;
+  color: white;
+
+}
+Suchform.input.ng-dirty {
+		background-color: lightgreen;
+}

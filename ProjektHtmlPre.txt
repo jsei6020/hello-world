@@ -1,0 +1,94 @@
+<html>
+<body>
+<pre>
+/api/ShowVersion
+
+{
+  "Version": "5.8.4.0-034R",
+  "Uptime": "6 days, 22 hours 30 minutes",
+  "Cpu": "RMI XLR V0.4",
+  "MacAdress": "00-15-70-D8-F5-30",
+  "SerialNumber": "9103520400048",
+  "FirmwareVersion": "502 build 4",
+  "FpgaVersion": "1.38",
+  "TimeStamp": "2016-10-17T12:34:32.559Z",
+  "RuntimeMilliseconds": 2018
+}
+/api/AdoptedDevices
+
+{
+  "AdoptedDevicesList": [
+    {
+      "DeviceName": "ap650-98C260",
+      "CfgStat": "configured",
+      "Version": "5.8.4.0-034R",
+      "Msgs": "No",
+      "AdoptedBy": "rfs6000-D8F530",
+      "LastAdoption": "6 days 02:53:34",
+      "Uptime": "6 days 02:55:45"
+    },
+    {
+      "DeviceName": "AP-13812",
+      "CfgStat": "configured",
+      "Version": "5.8.4.0-034R",
+      "Msgs": "No",
+      "AdoptedBy": "rfs6000-D8F530",
+      "LastAdoption": "6 days 02:53:11",
+      "Uptime": "6 days 02:55:39"
+    }
+  ],
+  "TimeStamp": "2016-10-17T12:35:05.091Z",
+  "RuntimeMilliseconds": 1527
+}
+/api/AdoptedOfflineDevices
+
+{
+  "AdoptedDevicesList": [
+    {
+      "Mac": "5C-0E-8B-98-C2-90",
+      "HostName": "ap650-98C290",
+      "Type": "ap650",
+      "RfDomain": "default",
+      "TimeOffline": "4:05:33",
+      "ConnectedTo": "rfs6000-D8F530:ge5"
+    }
+  ],
+  "TimeStamp": "2016-10-17T12:35:07.591Z",
+  "RuntimeMilliseconds": 1502
+}
+/api/Radios
+
+{
+  "RadioList": [
+    {
+      "Radioname": "AP-13812:R2",
+      "RadioMac": "B4-C7-99-AC-03-C0",
+      "RfMode": "5GHz-wlan",
+      "State": "On",
+      "Channel": "36w",
+      "Power": "16",
+      "Clients": "0"
+    }
+  ],
+  "TimeStamp": "2016-10-17T12:35:42.576Z",
+  "RuntimeMilliseconds": 1512
+}
+/api/Clients
+
+{
+  "ClientList": [
+    {
+      "Mac": "08-EC-A9-A5-53-20",
+      "IpV4": "192.168.15.193",
+      "Vendor": "Samsung Elec Ltd",
+      "RadioId": "5C-0E-8B-98-C2-60:R2",
+      "WLAN": "demo",
+      "Vlan": "1",
+      "State": "Data-Ready"
+    }
+  ],
+  "TimeStamp": "2016-10-17T12:36:10.092Z",
+  "RuntimeMilliseconds": 1496
+}
+<pre>
+<html>

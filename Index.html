@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+<title>Angular Training</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+<link rel="stylesheet" href="Training.css" type="text/css">
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$timeout,$interval) {
+	$scope.Headline = "Hello";
+    $scope.firstname = "John";
+    $scope.lastname = "Doe";
+	$scope.changeName= function () {
+			$scope.firstname = "Nelly";
+			$scope.lastname = "Frank";
+	}
+	
+	$scope.contacts = [
+		{fullname: "Jakob Seidler", Phone: "0152/31034741"},
+		{fullname: "Anne Seidler", Phone: "0163/4741814"}
+		
+	];
+	$scope.changeHeader = function () { $timeout (function () {
+	$scope.Headline = "How Are You";
+	}, 3000); };
+	$interval(function () {
+        $scope.theTime = new Date().toLocaleTimeString();
+    }, 1000);
+	$scope.cars = [
+        {model : "Ford Mustang", color : "red"},
+        {model : "Fiat 500", color : "white"},
+        {model : "Volvo XC90", color : "black"}
+    ];
+});
+</script>
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl">
+	<div name="Headsection">
+		<h1 ng-mouseover="Headline = 'Good Morning'" ng-mouseleave="Headline = 'Hello'" id="Title">{{ Headline }}</h1>
+		<p><input type="button"  value="New Header 3s Verzögerung" ng-click="changeHeader()"></p>
+		<p>{{theTime}}</p>
+	</div>
+    <div name="Namesection">
+		<input type="text" ng-model="firstname">
+		<input type="text" ng-model="lastname">
+		<p>{{firstname | uppercase}} {{lastname}}</p>
+		<p><input type="button"  value="New Name" ng-click="changeName()"></p>
+	</div>
+	<div name="Phonebook">
+		<table border="1">
+			<tr>
+				<th>{{$index}}</th>
+				<th>Name</th>
+				<th>Phone</th>
+			<tr ng-repeat="x in contacts | orderBy: 'fullname' | filter : Suche">
+				<td>{{$index +1}}</td>
+				<td>{{ x.fullname }}</td>
+				<td>{{ x.Phone }}</td>	
+			</tr>
+		</table>
+		<form name="Suchform">
+		<p>Suche nach: <input type="text" ng-model="Suche"></p>
+		</form>
+	</div>
+	<div name="Cars">
+		<p class="Carsection">Show Car Option:<input type="checkbox" ng-model="mySwitch"></p>	
+		<p ng-show="mySwitch">Select a car:</p>
+		<select ng-show="mySwitch" ng-model="selectedCar" ng-options="x.model for x in cars" class="Carsection">
+		</select>
+		<h1 class="Carsection" ng-show="mySwitch">You selected: {{selectedCar.model}}</h1>
+		<p class="Carsection" ng-show="mySwitch">Its color is: {{selectedCar.color}}</p>
+	</div>
+</div>
+
+
+</body>
+</html>
